@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker run --rm -it -v $PWD:/www -p 9080:9080 caddy caddy file-server --listen :9080 --root /www
