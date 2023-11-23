@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StimulusJS Example</title>
+    <!-- Include the StimulusJS library from the CDN -->
+    <script src="https://unpkg.com/@hotwired/stimulus@3"></script>
+  </head>
+  <body>
+    <h1>Working Week</h1>
+
+    <div data-controller="calculator">
+      <p>Hours worked</p>
+      <p>Mon: <input data-calculator-target="monday_h" type="input" value="0" /></p>
+      <p>Tue: <input data-calculator-target="tuesday_h" type="input" value="0" /></p>
+      <p>Wed: <input data-calculator-target="wednesday_h" type="input" value="0" /></p>
+      <p>Thu: <input data-calculator-target="thursday_h" type="input" value="0" /></p>
+      <p>Fri: <input data-calculator-target="friday_h" type="input" value="0" /></p>
+
+      <p><button data-action="click->calculator#calculate">Calculate</button></p>
+      <p>Remaining hours: <span data-calculator-target="remaining_h">?</span></p>
+    </div>
+
+    <!--    <div data-controller="hello">
+      <input data-hello-target="name" type="text" placeholder="Enter your name" />
+
+      <button data-action="click->hello#greet">Greet</button>
+
+      <p data-hello-target="output">Hello, Stimulus!</p>
+    </div>
+-->
+
+    <script>
+      const application = Stimulus.Application.start();
+
+      class CalculatorController extends Stimulus.Controller {
+        static targets = [
+          "monday_h",
+          // "monday_m",
+          "tuesday_h",
+          // "tuesday_m",
+          "wednesday_h",
+          // "wednesday_m",
+          "thursday_h",
+          // "thursday_m",
+          "friday_h",
+          // "friday_m",
+          "remaining_h",
+          // "remaining_m",
+        ];
+
+        calculate() {
+          let monday_h = parseInt(this.monday_hTarget.value);
+          // let monday_m = parseInt(this.monday_mTarget.value);
+          let tuesday_h = parseInt(this.tuesday_hTarget.value);
+          // let tuesday_m = parseInt(this.tuesday_mTarget.value);
+          let wednesday_h = parseInt(this.wednesday_hTarget.value);
+          // let wednesday_m = parseInt(this.wednesday_mTarget.value);
+          let thursday_h = parseInt(this.thursday_hTarget.value);
+          // let thursday_m = parseInt(this.thursday_mTarget.value);
+          let friday_h = parseInt(this.friday_hTarget.value);
+          // let friday_m = parseInt(this.friday_mTarget.value);
+
+          let total_h = monday_h + tuesday_h + wednesday_h + thursday_h + friday_h;
+          // let total_m = monday_m + tuesday_m + wednesday_m + thursday_m + friday_m;
+
+          let remaining_h = 7 * 5 - total_h;
+          // let remaining_m = 0 - total_m;
+
+          this.remaining_hTarget.textContent = remaining_h;
+          // this.remaining_mTarget.value = remaining_m;
+        }
+      }
+
+      application.register("calculator", CalculatorController);
+    </script>
+  </body>
+</html>
